@@ -1,6 +1,7 @@
 package main
 
 import (
+    "os"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -10,7 +11,7 @@ import (
 )
 
 func main() {
-	err := godotenv.Load("../.env.local")
+	err := godotenv.Load("../.env")
 	if err != nil {
 		panic(err)
 	}
