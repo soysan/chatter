@@ -6,19 +6,28 @@ import (
 	"os"
 )
 
-var CorsSettings = cors.Config{
-	AllowOrigins: []string{
-		"http://localhost:3000",
-		os.Getenv("FRONTEND_URL"),
-	},
-	AllowMethods: []string{
-		"GET",
-		"POST",
-	},
-	AllowHeaders: []string{
-		"Authorization",
-		"Content-Type",
-	},
-	AllowCredentials: true,
-	MaxAge:           24 * time.Hour,
+var origins []string
+
+func InitCors() cors.Config {
+    if url := os.Getenv("FRONTEND_URL"); url != "" {
+        origins = append(origins, url)
+    }
+
+    origins = append(origins, "http://localhost:3000")
+
+    return cors.Config{
+        AllowOrigins: origins,
+        AllowMethods: []string{
+            "GET",
+            "POST",
+        },
+        AllowHeaders: []string{
+            "Authorization",
+            "Content-Type",
+        },
+        AllowCredentials: true,
+        MaxAge:           24 * time.Hour,
+    }
 }
+
+var CorsSettings = InitCors()
