@@ -26,5 +26,6 @@ func main() {
 	router.POST("/chat", h.Chat)
 	router.GET("/history/list", h.HistoryList)
 
-	router.Run(":5555")
+    port := os.Getenv("PORT")
+	router.Run(":" + port)
 }
