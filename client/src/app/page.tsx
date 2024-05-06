@@ -11,7 +11,7 @@ export default function Home() {
   const {displayTime} = useTime()
 
   const handleMessages = async (newMsg: string) => {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}:${process.env.NEXT_PUBLIC_SERVER_PORT}/chat`;
+    const url = "" + process.env.NEXT_PUBLIC_SERVER_URL
     const res = await fetch(url, {
       method: 'POST',
       headers: {
